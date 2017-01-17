@@ -21,9 +21,11 @@ var HashTable = function() {
 
 HashTable.prototype.hash = function(s) {
     var sum = 0
+    var weight = 1
     for (var i = 0; i < s.length; i++) {
         var c = s[i]
-        sum += c.charCodeAt(0)
+        sum += c.charCodeAt(0) * weight
+        weight *= 10
     }
     return sum
 }
