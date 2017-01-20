@@ -6,13 +6,40 @@
 */
 
 var left = function(index) {
-    return 2 * index
+    // 1，转换为1开始的下标
+    // 2，计算左孩子下标
+    // 3，转换回0开始下标
+    var i = index + 1
+    var l = 2 * i
+    return l - 1
 }
 
 var right = function(index) {
-    return 2 * index + 1
+    // 1，转换为1开始的下标
+    // 2，计算右孩子下标
+    // 3，转换回0开始下标
+    var i = index + 1
+    var r = 2 * i + 1
+    return r - 1
 }
 
-var maxHeapify(array, index) {
-    
+arr = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1]
+
+var maxHeapify = function(array, index) {
+    // 调整下标为index的节点，使其满足最大堆性质
+    var l = left(index)
+    var r = right(index)
+    var max = index
+    var size = array.length
+    if(l < size && array[l] > array[index]) {
+        max = l
+    }else if(r < size && array[r] > array[index]) {
+        max = r
+    }
+    if(max != index) {
+        let temp = array[index]
+        array[index] = array[max]
+        array[max] = temp
+        maxHeapify(array, max)
+    }
 }
